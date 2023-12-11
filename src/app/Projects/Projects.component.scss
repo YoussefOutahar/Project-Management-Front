@@ -1,0 +1,17 @@
+mat-grid-list {
+    margin: 16px;
+  }
+  
+.floating-action-button {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+}
+
+.floating-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}

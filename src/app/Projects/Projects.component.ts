@@ -4,11 +4,24 @@ import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'app-Projects',
   templateUrl: './Projects.component.html',
+  styleUrls: ['./Projects.component.scss'],
 })
 export class ProjectsComponent implements OnInit {
   items: MenuItem[] | undefined;
 
-  breakpoint: number | undefined;
+  cards = [
+    { title: 'Card 1', description: 'This is card 1', imageUrl: '...' },
+    { title: 'Card 2', description: 'This is card 2', imageUrl: '...' },
+    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
+    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
+    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
+    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
+    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
+    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
+    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
+    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
+    // ...
+  ];
 
   constructor() {}
 
@@ -33,11 +46,5 @@ export class ProjectsComponent implements OnInit {
         routerLink: '/fileupload',
       },
     ];
-
-    this.breakpoint = window.innerWidth <= 400 ? 1 : 6;
-  }
-
-  onResize(event: any) {
-    this.breakpoint = event.target.innerWidth <= 400 ? 1 : 6;
   }
 }

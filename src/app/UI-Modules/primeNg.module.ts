@@ -19,6 +19,8 @@ import { AccordionModule } from 'primeng/accordion';
 import { DividerModule } from 'primeng/divider';
 import { ToolbarModule } from 'primeng/toolbar';
 
+import { StyleClassModule } from 'primeng/styleclass';
+
 @NgModule({
   declarations: [],
   exports: [
@@ -39,6 +41,8 @@ import { ToolbarModule } from 'primeng/toolbar';
     AccordionModule,
     DividerModule,
     ToolbarModule,
+    // ===================
+    StyleClassModule,
   ],
 })
 export class PrimeNgModule {}
