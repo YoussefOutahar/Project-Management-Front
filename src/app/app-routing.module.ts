@@ -5,7 +5,7 @@ import { LayoutComponent } from './Layout/layout.component';
 import { BlankComponent } from './Layout/blank/blank.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/projects', pathMatch: 'full' },
   {
     path: '',
     component: LayoutComponent,
@@ -15,6 +15,22 @@ const routes: Routes = [
         path: 'dashboard',
         loadChildren: () =>
           import('./Pages/pages.module').then((m) => m.PagesModule),
+      },
+    ],
+  },
+  {
+    path: '',
+    component: BlankComponent,
+    children: [
+      {
+        path: 'projects',
+        redirectTo: '/projects/all-projects',
+        pathMatch: 'full',
+      },
+      {
+        path: 'projects',
+        loadChildren: () =>
+          import('./Projects/projects.module').then((m) => m.ProjectsModule),
       },
     ],
   },
