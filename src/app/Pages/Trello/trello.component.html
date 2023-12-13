@@ -1,3 +1,51 @@
-<p>
-  trello works!
-</p>
+<!-- <div class="align-content-start">
+  <p-breadcrumb [model]="breadCrumbItems" [home]="home"></p-breadcrumb>
+  <p class="text-3xl p-2 font-bold">Trello</p>
+</div>
+<p-divider></p-divider> -->
+<div class="flex-col">
+  <p-toolbar styleClass="flex">
+    <ng-template pTemplate="start">
+      <p-button label="New" icon="pi pi-plus" class="mr-2"></p-button>
+      <p-button
+        label="Upload"
+        icon="pi pi-upload"
+        styleClass="p-button-success"
+      ></p-button>
+      <i
+        class="p-toolbar-separator pi pi-bars mr-2"
+        style="vertical-align: middle"
+      ></i>
+      <p-splitButton
+        label="Save"
+        icon="pi pi-check"
+        [model]="toolBarItems"
+        styleClass="p-button-warning"
+      ></p-splitButton>
+    </ng-template>
+    <ng-template pTemplate="end">
+      <p-button icon="pi pi-search" class="mr-2"></p-button>
+      <p-button
+        icon="pi pi-calendar"
+        styleClass="p-button-success mr-2"
+      ></p-button>
+      <p-button icon="pi pi-times" styleClass="p-button-danger"></p-button>
+    </ng-template>
+  </p-toolbar>
+
+  <div
+    class="flex align-items-center justify-content-start bg-primary overflow-scroll overflow-y-hidden"
+  >
+    @for (board of projectBoards; track $index) {
+    <p-panel [header]="board.title" styleClass="w-15rem p-3rem"> </p-panel>
+    }
+  </div>
+</div>
+
+<!-- <p-scrollPanel styleClass="flex min-h-full bg-primary">
+  <div class="flex align-items-center justify-content-start">
+    @for (board of projectBoards; track $index) {
+    <div class="p-5 m-5 border-round shadow-5"></div>
+    }
+  </div>
+</p-scrollPanel> -->

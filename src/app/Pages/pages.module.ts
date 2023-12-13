@@ -24,6 +24,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 
+import { PrimeNgModule } from '../UI-Modules/primeNg.module';
+
 @NgModule({
   declarations: [
     HomePageComponent,
@@ -44,8 +46,9 @@ import * as TablerIcons from 'angular-tabler-icons/icons';
     FormsModule,
     ReactiveFormsModule,
     MatNativeDateModule,
-    TablerIconsModule.pick(TablerIcons),
     NgApexchartsModule,
+    PrimeNgModule,
+    TablerIconsModule.pick(TablerIcons),
     RouterModule.forChild(pageRoutes),
   ],
   providers: [],

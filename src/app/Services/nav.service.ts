@@ -27,32 +27,32 @@ export class NavService {
     },
     {
       displayName: 'Trello',
-      iconName: 'home',
+      iconName: 'brand-trello',
       route: '/dashboard/trello',
     },
     {
       displayName: 'Budget',
-      iconName: 'money',
+      iconName: 'currency-dollar',
       route: '/dashboard/budget',
     },
     {
       displayName: 'Gantt',
-      iconName: 'calendar',
+      iconName: 'chart-arrows',
       route: '/dashboard/gantt',
     },
     {
       displayName: 'Ressources',
-      iconName: 'people',
+      iconName: 'users',
       route: '/dashboard/ressources',
     },
     {
       displayName: 'Activity Network',
-      iconName: 'link',
+      iconName: 'activity',
       route: '/dashboard/activity-network',
     },
     {
       displayName: 'Reports',
-      iconName: 'list',
+      iconName: 'report',
       route: '/dashboard/reports',
     },
     {
@@ -62,12 +62,12 @@ export class NavService {
     },
     {
       displayName: 'Risk Register',
-      iconName: 'list',
+      iconName: 'alert-circle',
       route: '/dashboard/risk-register',
     },
     {
       displayName: 'RACI Matrix',
-      iconName: 'list',
+      iconName: 'grid-4x4',
       route: '/dashboard/raci-matrix',
     },
   ];

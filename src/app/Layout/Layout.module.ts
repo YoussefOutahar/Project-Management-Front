@@ -14,6 +14,7 @@ import { AppNavItemComponent } from './Components/side-bar/nav-item/nav-item.com
 import { BrandingComponent } from './Components/side-bar/branding.component';
 import { BlankComponent } from './blank/blank.component';
 import { RouterOutlet } from '@angular/router';
+import { PrimeNgModule } from '../UI-Modules/primeNg.module';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { RouterOutlet } from '@angular/router';
     CommonModule,
     MaterialModule,
     BrowserAnimationsModule,
+    PrimeNgModule,
     TablerIconsModule.pick(TablerIcons),
   ],
   declarations: [

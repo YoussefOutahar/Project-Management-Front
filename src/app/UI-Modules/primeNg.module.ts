@@ -21,6 +21,9 @@ import { ToolbarModule } from 'primeng/toolbar';
 
 import { StyleClassModule } from 'primeng/styleclass';
 
+import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { PanelModule } from 'primeng/panel';
+
 @NgModule({
   declarations: [],
   exports: [
@@ -43,6 +46,9 @@ import { StyleClassModule } from 'primeng/styleclass';
     ToolbarModule,
     // ===================
     StyleClassModule,
+
+    ScrollPanelModule,
+    PanelModule,
   ],
 })
 export class PrimeNgModule {}
