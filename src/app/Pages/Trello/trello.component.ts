@@ -63,18 +63,6 @@ export class TrelloComponent implements OnInit {
       id: 7,
       title: 'Title',
     },
-    {
-      createdAt: new Date(),
-      description: 'Description',
-      id: 8,
-      title: 'Title',
-    },
-    {
-      createdAt: new Date(),
-      description: 'Description',
-      id: 9,
-      title: 'Title',
-    },
   ];
 
   ngOnInit() {
