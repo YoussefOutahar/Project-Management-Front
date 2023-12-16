@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
 import { ProjectService } from '../Services/Projects/project.service';
 import { Project } from '../Services/Projects/Interfaces';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AddProjectDialogueComponent } from './Components/add-project-dialogue/add-project-dialogue.component';
 import { Router } from '@angular/router';
+import { AuthService } from '../Auth/auth.service';
 
 @Component({
   selector: 'app-Projects',
@@ -21,6 +22,7 @@ export class ProjectsComponent implements OnInit {
   constructor(
     private projectService: ProjectService,
     public dialogService: DialogService, // public messageService: MessageService
+    private authService: AuthService,
     private router: Router
   ) {}
 
@@ -36,6 +38,7 @@ export class ProjectsComponent implements OnInit {
       },
     ];
 
+    this.projectService.removeDashboardSession();
     this.projectService.getProjects().subscribe((data: any) => {
       this.projectCards = data;
     });
@@ -88,6 +91,11 @@ export class ProjectsComponent implements OnInit {
         (projectCard) => projectCard.id !== project.id
       );
     });
+  }
+
+  logout() {
+    this.authService.logout();
+    window.location.reload();
   }
 
   convertTimestampToDate(timestamp: number) {

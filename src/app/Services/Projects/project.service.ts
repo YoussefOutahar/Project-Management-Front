@@ -9,7 +9,7 @@ import { Project } from './Interfaces';
 export class ProjectService {
   publicUrlProjects = Constants.API_URL_PROJECTS;
 
-  activeProject: Project | undefined;
+  private activeProject: Project | undefined;
 
   constructor(private http: HttpClient) {}
 
@@ -31,6 +31,10 @@ export class ProjectService {
 
   removeDashboardSession() {
     this.activeProject = undefined;
+  }
+
+  getActiveProject(): Project | undefined {
+    return this.activeProject;
   }
 
   checkIfProjectIsSelected(): boolean {

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../Config/constants';
 import { Observable } from 'rxjs';
 import { Board } from './TrelloModels';
+import { ProjectService } from '../Projects/project.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,5 +11,15 @@ import { Board } from './TrelloModels';
 export class TrelloService {
   publicUrlProjects = Constants.API_URL_PROJECTS;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private projectService: ProjectService
+  ) {}
+
+  getActiveProjectBoards(): Observable<Board[]> {
+    const projectId = this.projectService.getActiveProject()?.id;
+    return this.http.get<Board[]>(
+      `${this.publicUrlProjects}/${projectId}/boards`
+    );
+  }
 }
