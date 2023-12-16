@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { ProjectService } from '../Services/Projects/project.service';
+import { Project } from '../Services/Projects/Interfaces';
 
 @Component({
   selector: 'app-Projects',
@@ -9,21 +11,9 @@ import { MenuItem } from 'primeng/api';
 export class ProjectsComponent implements OnInit {
   items: MenuItem[] | undefined;
 
-  cards = [
-    { title: 'Card 1', description: 'This is card 1', imageUrl: '...' },
-    { title: 'Card 2', description: 'This is card 2', imageUrl: '...' },
-    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
-    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
-    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
-    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
-    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
-    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
-    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
-    { title: 'Card 3', description: 'This is card 3', imageUrl: '...' },
-    // ...
-  ];
+  projectCards: Project[] = [];
 
-  constructor() {}
+  constructor(private projectService: ProjectService) {}
 
   ngOnInit() {
     this.items = [
@@ -35,16 +25,35 @@ export class ProjectsComponent implements OnInit {
         label: 'Delete',
         icon: 'pi pi-times',
       },
-      {
-        label: 'Angular',
-        icon: 'pi pi-external-link',
-        url: 'http://angular.io',
-      },
-      {
-        label: 'Router',
-        icon: 'pi pi-upload',
-        routerLink: '/fileupload',
-      },
     ];
+
+    this.projectService.getProjects().subscribe((data: any) => {
+      console.log(data);
+      this.projectCards = data;
+    });
+  }
+
+  async handleAddNewProject() {
+    this.projectService
+      .createProject({
+        id: 0,
+        name: 'Test Project',
+        description: 'Test Description',
+        budget: 1000,
+        startDate: new Date().getTime(),
+        endDate: new Date().getTime(),
+        createdAt: new Date().getTime(),
+        completed: false,
+      })
+      .subscribe((data: any) => {
+        console.log(data);
+        this.projectCards.push(data);
+      });
+  }
+
+  async handleDeleteProject(project: Project[]) {}
+
+  convertTimestampToDate(timestamp: number) {
+    return new Date(timestamp).toLocaleDateString();
   }
 }

@@ -24,6 +24,8 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { PanelModule } from 'primeng/panel';
 
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+
 @NgModule({
   declarations: [],
   exports: [
@@ -49,6 +51,8 @@ import { PanelModule } from 'primeng/panel';
 
     ScrollPanelModule,
     PanelModule,
+
+    DynamicDialogModule,
   ],
 })
 export class PrimeNgModule {}

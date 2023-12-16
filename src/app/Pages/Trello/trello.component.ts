@@ -13,12 +13,7 @@ export class TrelloComponent implements OnInit {
   home: MenuItem | undefined;
   toolBarItems: MenuItem[] | undefined;
 
-  constructor(private trelloService: TrelloService) {
-    this.trelloService.getProjectBoards(1).subscribe(
-      (data) => console.log(data),
-      (error) => console.log(error)
-    );
-  }
+  constructor(private trelloService: TrelloService) {}
 
   projectBoards: Board[] = [
     {
@@ -29,9 +24,9 @@ export class TrelloComponent implements OnInit {
     },
     {
       createdAt: new Date(),
-      description: 'Description',
-      id: 2,
-      title: 'zwin hadchi',
+      description: 'Modified Description',
+      id: 8,
+      title: 'Modified Title',
     },
     {
       createdAt: new Date(),
