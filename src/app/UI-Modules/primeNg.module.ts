@@ -7,7 +7,6 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ChipsModule } from 'primeng/chips';
 import { ColorPickerModule } from 'primeng/colorpicker';
 
-import { DockModule } from 'primeng/dock';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 import { ButtonModule } from 'primeng/button';
@@ -24,8 +23,12 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { PanelModule } from 'primeng/panel';
 
-import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputNumberModule } from 'primeng/inputnumber';
 
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 @NgModule({
   declarations: [],
   exports: [
@@ -35,12 +38,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     SpeedDialModule,
     // ===================
     BreadcrumbModule,
-    DockModule,
-    AutoCompleteModule,
     CalendarModule,
-    CascadeSelectModule,
-    CheckboxModule,
-    ChipsModule,
     ColorPickerModule,
     CardModule,
     AccordionModule,
@@ -52,7 +50,17 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     ScrollPanelModule,
     PanelModule,
 
+    // Dialogs
     DynamicDialogModule,
+
+    // Inputs
+    InputTextModule,
+    InputSwitchModule,
+    InputTextareaModule,
+    InputNumberModule,
+    CascadeSelectModule,
+    CheckboxModule,
+    AutoCompleteModule,
   ],
 })
 export class PrimeNgModule {}

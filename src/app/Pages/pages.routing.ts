@@ -11,61 +11,62 @@ import { RiskRegisterPageComponent } from './risk-register-page/risk-register-pa
 import { RaciMatrixPageComponent } from './raci-matrix-page/raci-matrix-page.component';
 import { authGuard } from '../Auth/auth.guard';
 import { TrelloComponent } from './Trello/trello.component';
+import { ProjectSelectedGuard } from '../Services/Projects/projects-selected.guard';
 
 export const pageRoutes: Routes = [
   {
     path: 'home',
     component: HomePageComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, ProjectSelectedGuard],
   },
   {
     path: 'trello',
     component: TrelloComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, ProjectSelectedGuard],
   },
   {
     path: 'office',
     component: OfficePageComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, ProjectSelectedGuard],
   },
   {
     path: 'budget',
     component: BudgetPageComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, ProjectSelectedGuard],
   },
   {
     path: 'gantt',
     component: GanttPageComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, ProjectSelectedGuard],
   },
   {
     path: 'ressources',
     component: ResourcesPageComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, ProjectSelectedGuard],
   },
   {
     path: 'activity-network',
     component: ActivityNetworkPageComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, ProjectSelectedGuard],
   },
   {
     path: 'reports',
     component: ReportsPageComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, ProjectSelectedGuard],
   },
   {
     path: 'calendar',
     component: CalendarPageComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, ProjectSelectedGuard],
   },
   {
     path: 'risk-register',
     component: RiskRegisterPageComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, ProjectSelectedGuard],
   },
   {
     path: 'raci-matrix',
     component: RaciMatrixPageComponent,
-    canActivate: [authGuard],
+    canActivate: [authGuard, ProjectSelectedGuard],
   },
 ];

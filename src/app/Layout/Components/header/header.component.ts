@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../../Auth/auth.service';
+import { ProjectService } from '../../../Services/Projects/project.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +24,19 @@ export class HeaderComponent {
 
   showFiller = true;
 
-  constructor(public dialog: MatDialog, private authService: AuthService) {}
+  constructor(
+    public dialog: MatDialog,
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  handleProfileClick() {}
+
+  handleTasksClick() {}
+
+  handleProjectsClick() {
+    this.router.navigate(['/projects/all-projects']);
+  }
 
   logout() {
     this.authService.logout();

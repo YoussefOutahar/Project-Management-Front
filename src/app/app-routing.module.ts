@@ -8,18 +8,6 @@ const routes: Routes = [
   { path: '', redirectTo: '/projects', pathMatch: 'full' },
   {
     path: '',
-    component: LayoutComponent,
-    children: [
-      { path: 'dashboard', redirectTo: '/dashboard/home', pathMatch: 'full' },
-      {
-        path: 'dashboard',
-        loadChildren: () =>
-          import('./Pages/pages.module').then((m) => m.PagesModule),
-      },
-    ],
-  },
-  {
-    path: '',
     component: BlankComponent,
     children: [
       {
@@ -31,6 +19,18 @@ const routes: Routes = [
         path: 'projects',
         loadChildren: () =>
           import('./Projects/projects.module').then((m) => m.ProjectsModule),
+      },
+    ],
+  },
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      { path: 'dashboard', redirectTo: '/dashboard/home', pathMatch: 'full' },
+      {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('./Pages/pages.module').then((m) => m.PagesModule),
       },
     ],
   },
