@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { InputGroupAddon } from 'primeng/inputgroupaddon';
 
 @Component({
   selector: 'app-add-project-dialogue',

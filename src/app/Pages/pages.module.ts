@@ -25,15 +25,30 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 
 import { PrimeNgModule } from '../UI-Modules/primeNg.module';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { AddResourceDialgComponent } from './resources-page/Components/add-resource-dialg/add-resource-dialg.component';
+import { EditResourceDialgComponent } from './resources-page/Components/edit-resource-dialg/edit-resource-dialg.component';
+import { BoardComponent } from './Trello/Components/board/board.component';
+import { ListComponent } from './Trello/Components/list/list.component';
 
 @NgModule({
   declarations: [
     HomePageComponent,
+    // =====================
     TrelloComponent,
+    BoardComponent,
+    ListComponent,
+
     OfficePageComponent,
     BudgetPageComponent,
     GanttPageComponent,
+
+    // =====================
     ResourcesPageComponent,
+    AddResourceDialgComponent,
+    EditResourceDialgComponent,
+
+    //
     ActivityNetworkPageComponent,
     ReportsPageComponent,
     CalendarPageComponent,
@@ -48,6 +63,7 @@ import { PrimeNgModule } from '../UI-Modules/primeNg.module';
     MatNativeDateModule,
     NgApexchartsModule,
     PrimeNgModule,
+    FullCalendarModule,
     TablerIconsModule.pick(TablerIcons),
     RouterModule.forChild(pageRoutes),
   ],

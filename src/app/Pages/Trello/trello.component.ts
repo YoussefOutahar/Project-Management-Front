@@ -14,33 +14,25 @@ export class TrelloComponent implements OnInit {
 
   boardActions: { label?: string; icon?: string; separator?: boolean }[] = [];
 
-  projectBoards: Board[] = [];
   loading: boolean = false;
 
-  constructor(private trelloService: TrelloService) {}
+  projectBoards: Board[] = [];
+  selectedBoard?: Board;
+
+  constructor(private trelloService: TrelloService) {
+    this.trelloService.getActiveProjectBoards().subscribe((boards) => {
+      this.projectBoards = boards;
+      this.selectedBoard = boards[0];
+      this.toolBarItems = this.projectBoards.map((board) => {
+        return {
+          label: board.title,
+        };
+      });
+    });
+  }
 
   ngOnInit() {
     this.home = { icon: 'pi pi-home', routerLink: '/' };
-    this.toolBarItems = [
-      {
-        label: 'Update',
-        icon: 'pi pi-refresh',
-      },
-      {
-        label: 'Delete',
-        icon: 'pi pi-times',
-      },
-      {
-        label: 'Angular',
-        icon: 'pi pi-external-link',
-        url: 'http://angular.io',
-      },
-      {
-        label: 'Router',
-        icon: 'pi pi-upload',
-        routerLink: '/fileupload',
-      },
-    ];
     this.boardActions = [
       {
         label: 'Refresh',
@@ -58,11 +50,6 @@ export class TrelloComponent implements OnInit {
         icon: 'pi pi-times',
       },
     ];
-
-    this.trelloService.getActiveProjectBoards().subscribe((boards) => {
-      console.log(boards);
-      this.projectBoards = boards;
-    });
   }
   async addBoard() {
     this.loading = true;

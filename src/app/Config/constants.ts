@@ -18,4 +18,8 @@ export class Constants {
   public static getTrelloApiUrl(projectId: number): string {
     return Constants.API_URL + projectId + '/trello/';
   }
+
+  public static getBudgetApiUrl(projectId: number): string {
+    return Constants.API_URL + projectId + '/budget/';
+  }
 }
