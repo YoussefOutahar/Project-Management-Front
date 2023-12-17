@@ -1,0 +1,5 @@
+@import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
+.gantt-chart {
+  position: relative;
+  height: 600px;
+}
