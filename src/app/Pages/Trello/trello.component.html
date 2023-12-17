@@ -34,16 +34,31 @@
 
 <div class="grid">
   @for (board of projectBoards; track $index) {
-  <p-panel styleClass="col w-15rem  mr-3">
+  <p-panel styleClass="col w-30rem  mr-3">
     <ng-template pTemplate="header">
       <span class="text-primary font-semibold text-xl">
         {{ board.title }}
-      </span></ng-template
-    >
+      </span> </ng-template
+    ><ng-template pTemplate="icons"> </ng-template>
+
     Body Content
-    <ng-template pTemplate="footer"> </ng-template>
+    <ng-template pTemplate="footer">
+      <p-button icon="pi pi-" (onClick)="menu.toggle($event)"></p-button>
+      <p-menu
+        #menu
+        id="{{ 'menu_' + $index }}"
+        [model]="boardActions"
+        [popup]="true"
+      />
+    </ng-template>
   </p-panel>
   }
+  <p-button
+    label="Loading custom icon"
+    [loading]="loading"
+    loadingIcon="pi pi-bell"
+    (onClick)="addBoard()"
+  ></p-button>
 </div>
 
 <!-- <p-scrollPanel styleClass="flex min-h-full bg-primary">

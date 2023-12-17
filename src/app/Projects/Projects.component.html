@@ -58,13 +58,14 @@
               <button
                 pButton
                 pRipple
+                (click)="handleEditProject(card, $event)"
                 label="Edit"
                 icon="pi pi-file-edit"
               ></button>
               <button
                 pButton
                 pRipple
-                (click)="handleDeleteProject(card)"
+                (click)="handleDeleteProject(card, $event)"
                 label="Delete"
                 icon="pi pi-trash"
                 severity="danger"

@@ -9,59 +9,17 @@ import { Observable } from 'rxjs';
   templateUrl: './trello.component.html',
 })
 export class TrelloComponent implements OnInit {
-  breadCrumbItems: MenuItem[] | undefined;
   home: MenuItem | undefined;
   toolBarItems: MenuItem[] | undefined;
 
+  boardActions: { label?: string; icon?: string; separator?: boolean }[] = [];
+
+  projectBoards: Board[] = [];
+  loading: boolean = false;
+
   constructor(private trelloService: TrelloService) {}
 
-  projectBoards: Board[] = [
-    {
-      createdAt: new Date(),
-      description: 'Description',
-      id: 1,
-      title: 'Title',
-    },
-    {
-      createdAt: new Date(),
-      description: 'Modified Description',
-      id: 8,
-      title: 'Modified Title',
-    },
-    {
-      createdAt: new Date(),
-      description: 'Description',
-      id: 3,
-      title: 'Title',
-    },
-    {
-      createdAt: new Date(),
-      description: 'Description',
-      id: 4,
-      title: 'Title',
-    },
-    {
-      createdAt: new Date(),
-      description: 'Description',
-      id: 5,
-      title: 'Title',
-    },
-    {
-      createdAt: new Date(),
-      description: 'Description',
-      id: 6,
-      title: 'Title',
-    },
-    {
-      createdAt: new Date(),
-      description: 'Description',
-      id: 7,
-      title: 'Title',
-    },
-  ];
-
   ngOnInit() {
-    this.breadCrumbItems = [{ label: 'Dashboard' }, { label: 'Computer' }];
     this.home = { icon: 'pi pi-home', routerLink: '/' };
     this.toolBarItems = [
       {
@@ -83,5 +41,39 @@ export class TrelloComponent implements OnInit {
         routerLink: '/fileupload',
       },
     ];
+    this.boardActions = [
+      {
+        label: 'Refresh',
+        icon: 'pi pi-refresh',
+      },
+      {
+        label: 'Search',
+        icon: 'pi pi-search',
+      },
+      {
+        separator: true,
+      },
+      {
+        label: 'Delete',
+        icon: 'pi pi-times',
+      },
+    ];
+
+    this.trelloService.getActiveProjectBoards().subscribe((boards) => {
+      console.log(boards);
+      this.projectBoards = boards;
+    });
+  }
+  async addBoard() {
+    this.loading = true;
+    this.trelloService
+      .addBoard({
+        title: 'New Board',
+        description: 'New Board Description',
+      })
+      .subscribe((board) => {
+        this.projectBoards.push(board);
+        this.loading = false;
+      });
   }
 }

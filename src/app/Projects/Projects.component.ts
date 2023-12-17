@@ -45,7 +45,21 @@ export class ProjectsComponent implements OnInit {
   }
 
   async handleAddNewProject() {
-    this.show();
+    this.ref = this.dialogService.open(AddProjectDialogueComponent, {
+      header: 'Add a project',
+      footer: 'YoraStd',
+      width: '50vw',
+      modal: true,
+    });
+
+    this.ref.onClose.subscribe((data: any) => {
+      console.log(data);
+      // this.messageService.add({
+      //   severity: 'info',
+      //   summary: 'Product Selected',
+      //   detail: data.name,
+      // });
+    });
     // this.projectService
     //   .createProject({
     //     id: 0,
@@ -63,12 +77,26 @@ export class ProjectsComponent implements OnInit {
     //   });
   }
 
-  show() {
+  async handleCardClick(project: Project) {
+    this.projectService.setupDashboardSession(project);
+    this.router.navigate(['/dashboard']);
+  }
+  async handleDeleteProject(project: Project, $event: any) {
+    $event.stopPropagation();
+    this.projectService.deleteProject(project).subscribe((data: any) => {
+      this.projectCards = this.projectCards.filter(
+        (projectCard) => projectCard.id !== project.id
+      );
+    });
+  }
+  async handleEditProject(project: Project, $event: any) {
+    $event.stopPropagation();
     this.ref = this.dialogService.open(AddProjectDialogueComponent, {
-      header: 'Add a project',
+      header: 'Edit a project',
       footer: 'YoraStd',
       width: '50vw',
       modal: true,
+      data: project,
     });
 
     this.ref.onClose.subscribe((data: any) => {
@@ -78,18 +106,6 @@ export class ProjectsComponent implements OnInit {
       //   summary: 'Product Selected',
       //   detail: data.name,
       // });
-    });
-  }
-
-  async handleCardClick(project: Project) {
-    this.projectService.setupDashboardSession(project);
-    this.router.navigate(['/dashboard']);
-  }
-  async handleDeleteProject(project: Project) {
-    this.projectService.deleteProject(project).subscribe((data: any) => {
-      this.projectCards = this.projectCards.filter(
-        (projectCard) => projectCard.id !== project.id
-      );
     });
   }
 

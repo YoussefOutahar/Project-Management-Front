@@ -19,7 +19,15 @@ export class TrelloService {
   getActiveProjectBoards(): Observable<Board[]> {
     const projectId = this.projectService.getActiveProject()?.id;
     return this.http.get<Board[]>(
-      `${this.publicUrlProjects}/${projectId}/boards`
+      Constants.getTrelloApiUrl(projectId ?? 0) + 'get/boards/all'
+    );
+  }
+
+  addBoard(board: Board): Observable<Board> {
+    const projectId = this.projectService.getActiveProject()?.id;
+    return this.http.post<Board>(
+      Constants.getTrelloApiUrl(projectId ?? 0) + 'create/board  ',
+      board
     );
   }
 }

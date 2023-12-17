@@ -29,6 +29,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { MenuModule } from 'primeng/menu';
 @NgModule({
   declarations: [],
   exports: [
@@ -61,6 +62,9 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     CascadeSelectModule,
     CheckboxModule,
     AutoCompleteModule,
+
+    // Menus
+    MenuModule,
   ],
 })
 export class PrimeNgModule {}
