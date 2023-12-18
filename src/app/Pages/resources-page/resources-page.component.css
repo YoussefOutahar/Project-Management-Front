@@ -1,0 +1,31 @@
+.full-width-card {
+  width: 100%;
+}
+
+.big-icon {
+  font-size: 4em;
+}
+
+.big-name {
+  font-size: 2em;
+}
+
+.faint-description {
+  color: #aaa;
+}
+
+.green-price {
+  color: green;
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+}
+
+.icon-and-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+}

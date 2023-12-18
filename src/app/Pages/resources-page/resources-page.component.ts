@@ -12,13 +12,11 @@ import { EditResourceDialgComponent } from './Components/edit-resource-dialg/edi
   providers: [DialogService],
 })
 export class ResourcesPageComponent implements OnInit {
-  sortOrder!: number;
-
   layout: string = 'list';
 
-  sortField!: string;
-
   resources!: HumanResources[];
+
+  products!: any;
 
   ref: DynamicDialogRef | undefined;
 
@@ -28,21 +26,38 @@ export class ResourcesPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.products = this.generateRandomData();
     this.resourceService.getActiveProjectResources().subscribe((data) => {
       this.resources = data;
+      console.log(this.resources);
     });
   }
 
-  onSortChange(event: any) {
-    let value = event.value;
+  generateRandomData() {
+    const products = [];
+    const categories = ['Accessories', 'Clothing', 'Electronics'];
+    const inventoryStatuses = ['INSTOCK', 'LOWSTOCK', 'OUTOFSTOCK'];
 
-    if (value.indexOf('!') === 0) {
-      this.sortOrder = -1;
-      this.sortField = value.substring(1, value.length);
-    } else {
-      this.sortOrder = 1;
-      this.sortField = value;
+    for (let i = 0; i < 5; i++) {
+      const product = {
+        id: Math.random(),
+        code: Math.random().toString(36).substring(2),
+        name: `Product ${i}`,
+        description: `Product Description ${i}`,
+        image: `product-image-${i}.jpg`,
+        price: Math.floor(Math.random() * 100) + 1,
+        category: categories[Math.floor(Math.random() * categories.length)],
+        quantity: Math.floor(Math.random() * 100) + 1,
+        inventoryStatus:
+          inventoryStatuses[
+            Math.floor(Math.random() * inventoryStatuses.length)
+          ],
+        rating: Math.floor(Math.random() * 5) + 1,
+      };
+      products.push(product);
     }
+
+    return products;
   }
 
   async handleAddNewResource() {
@@ -54,7 +69,9 @@ export class ResourcesPageComponent implements OnInit {
     });
 
     this.ref.onClose.subscribe((data: any) => {
-      console.log(data);
+      this.resourceService.createResource(data).subscribe((data) => {
+        this.resources.push(data);
+      });
     });
   }
 

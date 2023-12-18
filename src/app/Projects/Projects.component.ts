@@ -54,6 +54,9 @@ export class ProjectsComponent implements OnInit {
 
     this.ref.onClose.subscribe((data: any) => {
       console.log(data);
+      this.projectService.createProject(data).subscribe((data: any) => {
+        this.projectCards.push(data);
+      });
       // this.messageService.add({
       //   severity: 'info',
       //   summary: 'Product Selected',
@@ -101,11 +104,6 @@ export class ProjectsComponent implements OnInit {
 
     this.ref.onClose.subscribe((data: any) => {
       console.log(data);
-      // this.messageService.add({
-      //   severity: 'info',
-      //   summary: 'Product Selected',
-      //   detail: data.name,
-      // });
     });
   }
 

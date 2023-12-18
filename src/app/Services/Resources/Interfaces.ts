@@ -2,5 +2,5 @@ export interface HumanResources {
   id: number;
   name: string;
   description: string;
-  category: 'Accessories';
+  costPerHour: number;
 }

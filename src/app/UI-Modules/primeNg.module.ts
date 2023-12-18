@@ -25,6 +25,7 @@ import { MenuModule } from 'primeng/menu';
 import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { DropdownModule } from 'primeng/dropdown';
+import { RatingModule } from 'primeng/rating';
 
 @NgModule({
   declarations: [],
@@ -71,6 +72,7 @@ import { DropdownModule } from 'primeng/dropdown';
 
     // Decorations
     TagModule,
+    RatingModule,
   ],
 })
 export class PrimeNgModule {}

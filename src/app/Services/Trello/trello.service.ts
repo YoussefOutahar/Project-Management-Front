@@ -53,4 +53,15 @@ export class TrelloService {
         '/lists'
     );
   }
+
+  addList(list: List, boardId: number): Observable<List> {
+    const projectId = this.projectService.getActiveProject()?.id;
+    return this.http.post<List>(
+      Constants.getTrelloApiUrl(projectId ?? 0) +
+        'create/board/' +
+        boardId +
+        '/list',
+      list
+    );
+  }
 }

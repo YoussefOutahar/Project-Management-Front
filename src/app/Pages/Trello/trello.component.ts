@@ -1,56 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api/menuitem';
 import { Board } from '../../Services/Trello/TrelloModels';
 import { TrelloService } from '../../Services/Trello/trello.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-trello',
   templateUrl: './trello.component.html',
 })
 export class TrelloComponent implements OnInit {
-  home: MenuItem | undefined;
-  toolBarItems: MenuItem[] | undefined;
-
-  boardActions: { label?: string; icon?: string; separator?: boolean }[] = [];
-
   loading: boolean = false;
 
   projectBoards: Board[] = [];
   selectedBoard?: Board;
+  selectedBoardSubject?: Subject<Board>;
 
   constructor(private trelloService: TrelloService) {
+    this.selectedBoardSubject?.subscribe((board) => {
+      this.selectedBoard = board;
+    });
     this.trelloService.getActiveProjectBoards().subscribe((boards) => {
       this.projectBoards = boards;
-      this.selectedBoard = boards[0];
-      this.toolBarItems = this.projectBoards.map((board) => {
-        return {
-          label: board.title,
-        };
-      });
+      this.selectedBoardSubject = new Subject<Board>();
+      this.selectedBoardSubject.next(boards[0]);
     });
   }
 
-  ngOnInit() {
-    this.home = { icon: 'pi pi-home', routerLink: '/' };
-    this.boardActions = [
-      {
-        label: 'Refresh',
-        icon: 'pi pi-refresh',
-      },
-      {
-        label: 'Search',
-        icon: 'pi pi-search',
-      },
-      {
-        separator: true,
-      },
-      {
-        label: 'Delete',
-        icon: 'pi pi-times',
-      },
-    ];
-  }
+  ngOnInit() {}
   async addBoard() {
     this.loading = true;
     this.trelloService
@@ -60,7 +35,14 @@ export class TrelloComponent implements OnInit {
       })
       .subscribe((board) => {
         this.projectBoards.push(board);
+        this.selectedBoardSubject?.next(board);
         this.loading = false;
       });
   }
+
+  onBoardChange(event: any) {
+    this.selectedBoardSubject?.next(event.value);
+  }
+  async editBoard() {}
+  async deleteBoard() {}
 }

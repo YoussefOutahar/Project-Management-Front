@@ -17,14 +17,14 @@ export class ResourcesService {
   getActiveProjectResources(): Observable<HumanResources[]> {
     const projectId = this.projectService.getActiveProject()?.id;
     return this.http.get<any>(
-      Constants.getBudgetApiUrl(projectId ?? 0) + '/human-resources/get/all'
+      Constants.getBudgetApiUrl(projectId ?? 0) + 'human-resources/get/all'
     );
   }
 
   createResource(resource: HumanResources): Observable<HumanResources> {
     const projectId = this.projectService.getActiveProject()?.id;
     return this.http.post<HumanResources>(
-      Constants.getBudgetApiUrl(projectId ?? 0) + '/human-resources/create',
+      Constants.getBudgetApiUrl(projectId ?? 0) + 'human-resources/create',
       resource
     );
   }
@@ -32,7 +32,7 @@ export class ResourcesService {
   updateResource(resource: HumanResources): Observable<HumanResources> {
     const projectId = this.projectService.getActiveProject()?.id;
     return this.http.put<HumanResources>(
-      Constants.getBudgetApiUrl(projectId ?? 0) + '/human-resources/update',
+      Constants.getBudgetApiUrl(projectId ?? 0) + 'human-resources/update',
       resource
     );
   }
@@ -41,7 +41,7 @@ export class ResourcesService {
     const projectId = this.projectService.getActiveProject()?.id;
     return this.http.delete<HumanResources>(
       Constants.getBudgetApiUrl(projectId ?? 0) +
-        '/human-resources/delete/' +
+        'human-resources/delete/' +
         resource.id
     );
   }

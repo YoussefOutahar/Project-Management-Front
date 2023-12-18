@@ -1,52 +1,43 @@
 <div class="formgrid grid">
-  <div class="field col-12 md:col-6">
-    <label for="firstname6">Title</label>
-    <span
-      class="p-input-icon-left text-base text-color surface-overlay p-2 surface-border border-round appearance-none outline-none focus:border-primary w-full"
+  <form [formGroup]="resourceFormGroup">
+    <div class="field col-12 md:col-6">
+      <label for="firstname6">Name</label>
+      <span
+        class="p-input-icon-left text-base text-color surface-overlay p-2 surface-border border-round appearance-none outline-none focus:border-primary w-full"
+      >
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText formControlName="name" />
+      </span>
+    </div>
+    <div class="field col-12 md:col-6">
+      <label for="lastname6">Budget</label>
+      <p-inputNumber
+        formControlName="costPerHour"
+        inputId="currency-us"
+        mode="currency"
+        currency="USD"
+        locale="en-US"
+        class="text-base text-color surface-overlay p-2 appearance-none outline-none focus:border-primary w-full"
+      >
+      </p-inputNumber>
+    </div>
+    <div class="field col-12">
+      <label for="address">Dsecription</label>
+      <textarea
+        formControlName="description"
+        rows="5"
+        cols="30"
+        pInputTextarea
+        [autoResize]="true"
+        class="text-base text-color surface-overlay p-2 appearance-none outline-none focus:border-primary w-full"
+      ></textarea>
+    </div>
+    <button
+      (click)="saveResource()"
+      type="button"
+      class="bg-primary border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:bg-primary-600 hover:border-primary-600 active:bg-primary-700 active:border-primary-700"
     >
-      <i class="pi pi-search"></i>
-      <input type="text" pInputText />
-    </span>
-  </div>
-  <div class="field col-12 md:col-6">
-    <label for="lastname6">Budget</label>
-    <p-inputNumber
-      inputId="currency-us"
-      mode="currency"
-      currency="USD"
-      locale="en-US"
-      class="text-base text-color surface-overlay p-2 appearance-none outline-none focus:border-primary w-full"
-    >
-    </p-inputNumber>
-  </div>
-  <div class="field col-12">
-    <label for="address">Dsecription</label>
-    <textarea
-      rows="5"
-      cols="30"
-      pInputTextarea
-      [autoResize]="true"
-      class="text-base text-color surface-overlay p-2 appearance-none outline-none focus:border-primary w-full"
-    ></textarea>
-  </div>
-  <div class="field col-12 md:col-6">
-    <label for="city">Start Date</label>
-    <p-calendar
-      [showIcon]="true"
-      class="w-full text-base text-color surface-overlay p-2 outline-none focus:border-primary"
-    ></p-calendar>
-  </div>
-  <div class="field col-12 md:col-3">
-    <label for="state">End Date</label>
-    <p-calendar
-      [showIcon]="true"
-      class="w-full text-base text-color surface-overlay p-2 outline-none focus:border-primary"
-    ></p-calendar>
-  </div>
-  <button
-    type="button"
-    class="bg-primary border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:bg-primary-600 hover:border-primary-600 active:bg-primary-700 active:border-primary-700"
-  >
-    Submit
-  </button>
+      Submit
+    </button>
+  </form>
 </div>
