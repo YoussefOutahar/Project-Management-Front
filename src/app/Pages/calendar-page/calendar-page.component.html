@@ -1,1 +1,5 @@
-<full-calendar [options]="options"></full-calendar>
+<full-calendar [options]="calendarOptions">
+    <ng-template #eventContent let-arg>
+        <i [style.color]="arg.event.textColor" [style.font-weight]="'bold'">{{ arg.event.title }}</i>
+    </ng-template>
+</full-calendar>
