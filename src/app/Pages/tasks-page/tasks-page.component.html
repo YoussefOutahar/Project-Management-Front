@@ -7,21 +7,36 @@
   <ng-template pTemplate="header">
     <tr>
       <th>Name</th>
-      <th>Duration</th>
       <th>State</th>
+      <th>Duration</th>
       <th>Comments</th>
       <th>Start Date</th>
       <th>End Date</th>
+      <th>Info</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-task>
     <tr>
       <td>{{ task.text }}</td>
+      <td>
+        <p-tag
+          [value]="task.status"
+          [severity]="getTaskSeverity(task.status)"
+        ></p-tag>
+      </td>
       <td>{{ task.duration }} Days</td>
-      <td>{{ task.status }}</td>
+
       <td>{{ task.quantity }}</td>
       <td>{{ task.start_date }}</td>
       <td>{{ task.end_date }}</td>
+      <td>
+        <p-button
+          icon="pi pi-info-circle"
+          [rounded]="true"
+          [text]="true"
+          [raised]="true"
+        ></p-button>
+      </td>
     </tr>
   </ng-template>
   <ng-template pTemplate="summary"> Footer </ng-template>

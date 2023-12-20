@@ -18,4 +18,17 @@ export class TasksPageComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  getTaskSeverity(status: string) {
+    switch (status) {
+      case 'DONE':
+        return 'success';
+      case 'TODO':
+        return 'warning';
+      case 'IN_PROGRESS':
+        return 'danger';
+      default:
+        return 'info';
+    }
+  }
 }
