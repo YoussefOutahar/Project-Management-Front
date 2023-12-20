@@ -13,7 +13,9 @@ export const ProjectSelectedGuard: CanActivateFn = (route, state) => {
 
   if (isProjectSelected) {
     console.log('ProjectSelectedGuard: Project selected');
-    console.log('Active Project' + inject(ProjectService).getActiveProject());
+    console.log(
+      'Active Project id: ' + inject(ProjectService).getActiveProject()?.id
+    );
   }
 
   return isProjectSelected;

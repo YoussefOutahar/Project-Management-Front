@@ -8,19 +8,17 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Constants } from '../Config/constants';
+import { ApiEndpointsService } from '../Services/api-endpoints.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private apiEndpointsService: ApiEndpointsService) {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.log('intercepted request by token interceptor ... ');
-    if (request.url.includes(Constants.API_URL_AUTH)) {
-      console.log('Auth request');
-      console.log('Disgarding token');
+    if (request.url.includes(this.apiEndpointsService.API_URL_AUTH)) {
       return next.handle(request);
     }
     const token = localStorage.getItem('access_token');
@@ -31,8 +29,6 @@ export class AuthInterceptor implements HttpInterceptor {
         },
       });
     }
-    console.log('Sending request with new Token header now ...');
-    console.log(request);
     return next.handle(request);
   }
 }

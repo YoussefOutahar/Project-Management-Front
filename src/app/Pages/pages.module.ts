@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { pageRoutes } from './pages.routing';
 
-import { HomePageComponent } from './home-page/home-page.component';
 import { TrelloComponent } from './Trello/trello.component';
 import { OfficePageComponent } from './office-page/office-page.component';
 import { BudgetPageComponent } from './budget-page/budget-page.component';
@@ -33,7 +32,6 @@ import { ListComponent } from './Trello/Components/list/list.component';
 
 @NgModule({
   declarations: [
-    HomePageComponent,
     // =====================
     TrelloComponent,
     BoardComponent,

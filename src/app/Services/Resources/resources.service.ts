@@ -4,6 +4,7 @@ import { ProjectService } from '../Projects/project.service';
 import { Constants } from '../../Config/constants';
 import { HumanResources } from './Interfaces';
 import { Observable } from 'rxjs';
+import { ApiEndpointsService } from '../api-endpoints.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,20 +12,21 @@ import { Observable } from 'rxjs';
 export class ResourcesService {
   constructor(
     private http: HttpClient,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private apiEndpointsService: ApiEndpointsService
   ) {}
 
   getActiveProjectResources(): Observable<HumanResources[]> {
     const projectId = this.projectService.getActiveProject()?.id;
     return this.http.get<any>(
-      Constants.getBudgetApiUrl(projectId ?? 0) + 'human-resources/get/all'
+      this.apiEndpointsService.getBudgetApiUrl() + 'human-resources/get/all'
     );
   }
 
   createResource(resource: HumanResources): Observable<HumanResources> {
     const projectId = this.projectService.getActiveProject()?.id;
     return this.http.post<HumanResources>(
-      Constants.getBudgetApiUrl(projectId ?? 0) + 'human-resources/create',
+      this.apiEndpointsService.getBudgetApiUrl() + 'human-resources/create',
       resource
     );
   }
@@ -32,7 +34,7 @@ export class ResourcesService {
   updateResource(resource: HumanResources): Observable<HumanResources> {
     const projectId = this.projectService.getActiveProject()?.id;
     return this.http.put<HumanResources>(
-      Constants.getBudgetApiUrl(projectId ?? 0) + 'human-resources/update',
+      this.apiEndpointsService.getBudgetApiUrl() + 'human-resources/update',
       resource
     );
   }
@@ -40,7 +42,7 @@ export class ResourcesService {
   deleteResource(resource: HumanResources): Observable<HumanResources> {
     const projectId = this.projectService.getActiveProject()?.id;
     return this.http.delete<HumanResources>(
-      Constants.getBudgetApiUrl(projectId ?? 0) +
+      this.apiEndpointsService.getBudgetApiUrl() +
         'human-resources/delete/' +
         resource.id
     );

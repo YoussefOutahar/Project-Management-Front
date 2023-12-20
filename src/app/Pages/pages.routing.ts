@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomePageComponent } from './home-page/home-page.component';
 import { OfficePageComponent } from './office-page/office-page.component';
 import { BudgetPageComponent } from './budget-page/budget-page.component';
 import { GanttPageComponent } from './gantt-page/gantt-page.component';
@@ -14,11 +13,6 @@ import { TrelloComponent } from './Trello/trello.component';
 import { ProjectSelectedGuard } from '../Services/Projects/projects-selected.guard';
 
 export const pageRoutes: Routes = [
-  {
-    path: 'home',
-    component: HomePageComponent,
-    canActivate: [authGuard, ProjectSelectedGuard],
-  },
   {
     path: 'trello',
     component: TrelloComponent,
