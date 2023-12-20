@@ -8,7 +8,7 @@ export class TaskService {
       {
         id: 1,
         text: 'Task #1',
-        start_date: '2023-04-15 00:00',
+        start_date: '2023-11-15 00:00',
         duration: 3,
         progress: 0.6,
         parent: 0,
@@ -16,7 +16,7 @@ export class TaskService {
       {
         id: 2,
         text: 'Task #2',
-        start_date: '2023-04-18 00:00',
+        start_date: '2023-11-18 00:00',
         duration: 3,
         progress: 0.4,
         parent: 0,
