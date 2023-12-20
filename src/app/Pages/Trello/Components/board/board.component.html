@@ -1,27 +1,18 @@
 <div class="grid">
   <div class="col-4" *ngFor="let list of boardLists; let i = index">
     <p-card class="shadow-6 custom-card">
-      <p-header>{{ list.title }}</p-header>
+      <p-header>
+        <div class="text-center font-semibold m-2">
+          <span><br />{{ list.title }}</span>
+        </div>
+      </p-header>
       <!-- Inner cards -->
-      <!-- <div *ngFor="let innerCard of list.innerCards">
-          <p-card class="p-shadow-2 custom-inner-card">
-            {{ innerCard.text }}
-          </p-card>
-        </div> -->
+      <div class="align-items-center">
+        <list [list]="list"></list>
+      </div>
       <!-- Action buttons -->
       <p-footer>
-        <button
-          pButton
-          type="button"
-          label="Action 1"
-          class="button-rounded button-success"
-        ></button>
-        <button
-          pButton
-          type="button"
-          label="Action 2"
-          class="button-rounded button-warning"
-        ></button>
+        <div class="bg-gray-100"></div>
       </p-footer>
     </p-card>
   </div>

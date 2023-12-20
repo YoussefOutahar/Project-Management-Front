@@ -1,3 +1,18 @@
-<p>
-  list works!
-</p>
+<div flex justify-content-center>
+  @for (item of cards; track $index) {
+  <div class="flex align-items-start justify-content-start">
+    <p-card class="tiny-long-card">
+      {{ item.title }}
+    </p-card>
+    <p-button icon="pi pi-bars" class="p-button-rounded mr-2"></p-button>
+  </div>
+  }
+  <div class="align-items-center align-content-center">
+    <p-button
+      icon="pi pi-plus"
+      (click)="addCard()"
+      size="small"
+      severity="success"
+    ></p-button>
+  </div>
+</div>

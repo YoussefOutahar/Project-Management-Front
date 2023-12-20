@@ -1,8 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Task } from './Interfaces';
+import { HttpClient } from '@angular/common/http';
+import { Constants } from '../../Config/constants';
+import { firstValueFrom } from 'rxjs';
+import { ProjectService } from '../Projects/project.service';
+import { HandleError } from '../helpers';
+import { ApiEndpointsService } from '../api-endpoints.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class TaskService {
+  constructor(
+    private projectService: ProjectService,
+    private http: HttpClient,
+    private apiEndpointsService: ApiEndpointsService
+  ) {}
+
   get(): Promise<Task[]> {
     return Promise.resolve([
       {
@@ -22,5 +36,64 @@ export class TaskService {
         parent: 0,
       },
     ]);
+  }
+
+  async getAllTasks() {
+    const projectId = this.projectService.getActiveProject()?.id;
+    try {
+      return await firstValueFrom(
+        this.http.get(this.apiEndpointsService.getTasksApiUrl() + 'all')
+      );
+    } catch (error) {
+      return HandleError(error);
+    }
+  }
+
+  async getTask(id: number) {
+    try {
+      return await firstValueFrom(
+        this.http.get(this.apiEndpointsService.getTasksApiUrl() + 'get/' + id)
+      );
+    } catch (error) {
+      return HandleError(error);
+    }
+  }
+
+  async createTask(task: Task) {
+    try {
+      return await firstValueFrom(
+        this.http.post(
+          this.apiEndpointsService.getTasksApiUrl() + 'create',
+          task
+        )
+      );
+    } catch (error) {
+      return HandleError(error);
+    }
+  }
+
+  async updateTask(task: Task) {
+    try {
+      return await firstValueFrom(
+        this.http.put(
+          this.apiEndpointsService.getTasksApiUrl() + 'update',
+          task
+        )
+      );
+    } catch (error) {
+      return HandleError(error);
+    }
+  }
+
+  async deleteTask(id: number) {
+    try {
+      return await firstValueFrom(
+        this.http.delete(
+          this.apiEndpointsService.getTasksApiUrl() + 'delete/' + id
+        )
+      );
+    } catch (error) {
+      return HandleError(error);
+    }
   }
 }

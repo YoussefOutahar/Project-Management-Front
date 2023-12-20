@@ -8,18 +8,4 @@ export class Constants {
   public static readonly APP_NAME: string = 'Project Management';
   public static readonly APP_VERSION: string = '1.0.0';
   public static readonly APP_AUTHOR: string = 'Youssef Outahar';
-
-  // API
-  public static readonly API_URL: string = 'http://localhost:8082/api/v1/';
-  public static readonly API_URL_AUTH: string = Constants.API_URL + 'auth/';
-  public static readonly API_URL_PROJECTS: string =
-    Constants.API_URL + 'projects/';
-
-  public static getTrelloApiUrl(projectId: number): string {
-    return Constants.API_URL + projectId + '/trello/';
-  }
-
-  public static getBudgetApiUrl(projectId: number): string {
-    return Constants.API_URL + projectId + '/budget/';
-  }
 }

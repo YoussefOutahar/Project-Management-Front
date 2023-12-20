@@ -14,6 +14,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
+import { ProjectSessionInterceptor } from './Services/project-session.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +38,11 @@ import * as TablerIcons from 'angular-tabler-icons/icons';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: CorsInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ProjectSessionInterceptor,
       multi: true,
     },
   ],
