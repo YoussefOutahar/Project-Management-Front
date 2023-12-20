@@ -12,21 +12,18 @@ import { ProjectService } from './Projects/project.service';
 export class ProjectSessionInterceptor implements HttpInterceptor {
   constructor(private projectService: ProjectService) {}
 
+  projectGUID: string = 'E2171A7B-FE22-41AD-A20C-08451EB14095';
+
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const projectId = this.projectService.getActiveProject()?.id ?? 0;
 
-    console.log('ProjectSessionInterceptor: ' + projectId);
-    console.log('ProjectSessionInterceptor: ' + request.url);
-
     // replace the project id in the url with the active project id
     request = request.clone({
-      url: request.url.replace('-123456789', projectId.toString()),
+      url: request.url.replace(this.projectGUID, projectId.toString()),
     });
-
-    console.log('ProjectSessionInterceptor: ' + request.url);
 
     return next.handle(request);
   }
