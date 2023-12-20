@@ -26,6 +26,8 @@ import { DataViewModule } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { DropdownModule } from 'primeng/dropdown';
 import { RatingModule } from 'primeng/rating';
+import { TreeTableModule } from 'primeng/treetable';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [],
@@ -69,6 +71,8 @@ import { RatingModule } from 'primeng/rating';
 
     // Views
     DataViewModule,
+    TreeTableModule,
+    TableModule,
 
     // Decorations
     TagModule,

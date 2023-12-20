@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 import { OfficePageComponent } from './office-page/office-page.component';
+import { TasksPageComponent } from './tasks-page/tasks-page.component';
 import { BudgetPageComponent } from './budget-page/budget-page.component';
 import { GanttPageComponent } from './gantt-page/gantt-page.component';
 import { ResourcesPageComponent } from './resources-page/resources-page.component';
-import { ActivityNetworkPageComponent } from './activity-network-page/activity-network-page.component';
 import { ReportsPageComponent } from './reports-page/reports-page.component';
 import { CalendarPageComponent } from './calendar-page/calendar-page.component';
 import { RiskRegisterPageComponent } from './risk-register-page/risk-register-page.component';
@@ -24,6 +24,11 @@ export const pageRoutes: Routes = [
     canActivate: [authGuard, ProjectSelectedGuard],
   },
   {
+    path: 'tasks',
+    component: TasksPageComponent,
+    canActivate: [authGuard, ProjectSelectedGuard],
+  },
+  {
     path: 'budget',
     component: BudgetPageComponent,
     canActivate: [authGuard, ProjectSelectedGuard],
@@ -36,11 +41,6 @@ export const pageRoutes: Routes = [
   {
     path: 'ressources',
     component: ResourcesPageComponent,
-    canActivate: [authGuard, ProjectSelectedGuard],
-  },
-  {
-    path: 'activity-network',
-    component: ActivityNetworkPageComponent,
     canActivate: [authGuard, ProjectSelectedGuard],
   },
   {

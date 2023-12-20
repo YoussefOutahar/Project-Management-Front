@@ -5,10 +5,10 @@ import { pageRoutes } from './pages.routing';
 
 import { TrelloComponent } from './Trello/trello.component';
 import { OfficePageComponent } from './office-page/office-page.component';
+import { TasksPageComponent } from './tasks-page/tasks-page.component';
 import { BudgetPageComponent } from './budget-page/budget-page.component';
 import { GanttPageComponent } from './gantt-page/gantt-page.component';
 import { ResourcesPageComponent } from './resources-page/resources-page.component';
-import { ActivityNetworkPageComponent } from './activity-network-page/activity-network-page.component';
 import { ReportsPageComponent } from './reports-page/reports-page.component';
 import { CalendarPageComponent } from './calendar-page/calendar-page.component';
 import { RiskRegisterPageComponent } from './risk-register-page/risk-register-page.component';
@@ -38,6 +38,7 @@ import { ListComponent } from './Trello/Components/list/list.component';
     ListComponent,
 
     OfficePageComponent,
+    TasksPageComponent,
     BudgetPageComponent,
     GanttPageComponent,
 
@@ -47,7 +48,6 @@ import { ListComponent } from './Trello/Components/list/list.component';
     EditResourceDialgComponent,
 
     //
-    ActivityNetworkPageComponent,
     ReportsPageComponent,
     CalendarPageComponent,
     RiskRegisterPageComponent,

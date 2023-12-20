@@ -26,8 +26,13 @@ export class NavService {
       route: '/dashboard/office',
     },
     {
+      displayName: 'Tasks',
+      iconName: 'activity',
+      route: '/dashboard/tasks',
+    },
+    {
       displayName: 'Trello',
-      iconName: 'brand-trello',
+      iconName: 'layout-kanban',
       route: '/dashboard/trello',
     },
     {
@@ -44,11 +49,6 @@ export class NavService {
       displayName: 'Ressources',
       iconName: 'users',
       route: '/dashboard/ressources',
-    },
-    {
-      displayName: 'Activity Network',
-      iconName: 'activity',
-      route: '/dashboard/activity-network',
     },
     {
       displayName: 'Reports',

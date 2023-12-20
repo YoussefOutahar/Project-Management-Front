@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Constants } from '../../Config/constants';
 import { HttpClient } from '@angular/common/http';
 import { Project } from './Interfaces';
 import { ApiEndpointsService } from '../api-endpoints.service';
