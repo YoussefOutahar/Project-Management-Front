@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../Services/Tasks/tasks.service';
 import { Observable } from 'rxjs';
 import { Task } from '../../Services/Tasks/Interfaces';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-tasks-page',
@@ -10,6 +11,9 @@ import { Task } from '../../Services/Tasks/Interfaces';
 })
 export class TasksPageComponent implements OnInit {
   tasks: Task[] = [];
+  infoTask: Task | undefined;
+
+  infoVisible: boolean = false;
 
   constructor(private taskService: TaskService) {
     this.taskService.getAllTasks().then((data) => {
@@ -30,5 +34,10 @@ export class TasksPageComponent implements OnInit {
       default:
         return 'info';
     }
+  }
+
+  showInfoDialog(task: Task) {
+    this.infoTask = task;
+    this.infoVisible = true;
   }
 }

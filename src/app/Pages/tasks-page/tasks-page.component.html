@@ -1,9 +1,33 @@
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+    <button pButton icon="pi pi-plus" class="mr-2"></button>
+    <button pButton icon="pi pi-print" class="mr-2"></button>
+    <button pButton icon="pi pi-upload"></button>
+  </div>
+  <div class="p-toolbar-group-center">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input pInputText placeholder="Search" />
+    </span>
+  </div>
+  <div class="p-toolbar-group-end">
+    <button pButton icon="pi pi-print" class="mr-2"></button>
+    <button pButton icon="pi pi-upload"></button>
+  </div>
+</p-toolbar>
 <p-table
   [value]="tasks"
   styleClass="p-datatable-gridlines"
   [tableStyle]="{ 'min-width': '50rem' }"
+  [paginator]="true"
+  [rows]="5"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [rowsPerPageOptions]="[5, 10, 20]"
+  [exportHeader]="'customExportHeader'"
 >
-  <ng-template pTemplate="caption"> Header </ng-template>
+  <ng-template pTemplate="caption">
+    <div class="flex align-items-center justify-content-between"></div>
+  </ng-template>
   <ng-template pTemplate="header">
     <tr>
       <th>Name</th>
@@ -16,6 +40,7 @@
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-task>
+    @if(tasks.length > 0){
     <tr>
       <td>{{ task.text }}</td>
       <td>
@@ -35,9 +60,31 @@
           [rounded]="true"
           [text]="true"
           [raised]="true"
+          (click)="showInfoDialog(task)"
         ></p-button>
+        <p-dialog
+          header="Task Info"
+          [(visible)]="infoVisible"
+          [style]="{ width: '50vw' }"
+        >
+          @if(task == null){
+          <div></div>
+          } @else{
+          <p-progressSpinner
+            styleClass="w-4rem h-4rem"
+            strokeWidth="8"
+            fill="var(--surface-ground)"
+            animationDuration=".5s"
+          ></p-progressSpinner>
+          }
+        </p-dialog>
       </td>
     </tr>
+    } @else {
+    <div class="block align-items-center">No Tasks Found</div>
+    }
   </ng-template>
-  <ng-template pTemplate="summary"> Footer </ng-template>
+  <ng-template pTemplate="summary">
+    Total Tasks: {{ tasks.length }}
+  </ng-template>
 </p-table>

@@ -28,6 +28,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RatingModule } from 'primeng/rating';
 import { TreeTableModule } from 'primeng/treetable';
 import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [],
@@ -54,6 +56,7 @@ import { TableModule } from 'primeng/table';
     SpeedDialModule,
 
     // Dialogs
+    DialogModule,
     DynamicDialogModule,
 
     // Inputs
@@ -77,6 +80,7 @@ import { TableModule } from 'primeng/table';
     // Decorations
     TagModule,
     RatingModule,
+    ProgressSpinnerModule,
   ],
 })
 export class PrimeNgModule {}
