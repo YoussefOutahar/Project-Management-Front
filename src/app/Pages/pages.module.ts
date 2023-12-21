@@ -23,11 +23,11 @@ import * as TablerIcons from 'angular-tabler-icons/icons';
 
 import { PrimeNgModule } from '../UI-Modules/primeNg.module';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { AddResourceDialgComponent } from './resources-page/Components/add-resource-dialg/add-resource-dialg.component';
-import { EditResourceDialgComponent } from './resources-page/Components/edit-resource-dialg/edit-resource-dialg.component';
 import { BoardComponent } from './Trello/Components/board/board.component';
 import { ListComponent } from './Trello/Components/list/list.component';
 import { TaskCommentsComponent } from './tasks-page/task-comments/task-comments.component';
+import { UserInfoDialgComponent } from './resources-page/Components/user-info-dialg/user-info-dialg.component';
+import { UserTasksDialgComponent } from './resources-page/Components/user-tasks-dialg/user-tasks-dialg.component';
 
 @NgModule({
   declarations: [
@@ -46,8 +46,8 @@ import { TaskCommentsComponent } from './tasks-page/task-comments/task-comments.
 
     // =====================
     ResourcesPageComponent,
-    AddResourceDialgComponent,
-    EditResourceDialgComponent,
+    UserInfoDialgComponent,
+    UserTasksDialgComponent,
 
     //
     ReportsPageComponent,

@@ -1,4 +1,4 @@
-import { Component, OnInit ,ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import {
   CalendarOptions,
   DateSelectArg,
@@ -25,7 +25,13 @@ import { Task } from '../../Services/Tasks/Interfaces';
 })
 export class CalendarPageComponent implements OnInit {
   calendarOptions: CalendarOptions = {
-    plugins: [interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin, bootstrap5Plugin],
+    plugins: [
+      interactionPlugin,
+      dayGridPlugin,
+      timeGridPlugin,
+      listPlugin,
+      bootstrap5Plugin,
+    ],
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
@@ -44,7 +50,10 @@ export class CalendarPageComponent implements OnInit {
     eventClick: this.handleEventClick.bind(this),
   };
 
-  constructor(private taskService: TaskService, private changeDetector: ChangeDetectorRef) {}
+  constructor(
+    private taskService: TaskService,
+    private changeDetector: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.loadEvents();
@@ -52,7 +61,7 @@ export class CalendarPageComponent implements OnInit {
   }
 
   loadEvents() {
-    this.taskService.get().then((tasks) => {
+    this.taskService.getAllTasks().then((tasks) => {
       console.log(tasks);
       console.log(this.formatEvents(tasks));
       this.calendarOptions.events = this.formatEvents(tasks);
@@ -106,6 +115,4 @@ export class CalendarPageComponent implements OnInit {
   //   this.currentEvents.set(events);
   //   this.changeDetector.detectChanges(); // workaround for pressionChangedAfterItHasBeenCheckedError
   // }
-
-  
 }

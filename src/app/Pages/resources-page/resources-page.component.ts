@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HumanResources } from '../../Services/Resources/Interfaces';
-import { ResourcesService } from '../../Services/Resources/resources.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { AddResourceDialgComponent } from './Components/add-resource-dialg/add-resource-dialg.component';
-import { EditResourceDialgComponent } from './Components/edit-resource-dialg/edit-resource-dialg.component';
+import { User } from '../../Auth/Interfaces/user';
+import { UsersService } from '../../Services/users.service';
+import { UserInfoDialgComponent } from './Components/user-info-dialg/user-info-dialg.component';
+import { UserTasksDialgComponent } from './Components/user-tasks-dialg/user-tasks-dialg.component';
 
 @Component({
   selector: 'app-resources-page',
@@ -14,54 +14,30 @@ import { EditResourceDialgComponent } from './Components/edit-resource-dialg/edi
 export class ResourcesPageComponent implements OnInit {
   layout: string = 'list';
 
-  resources!: HumanResources[];
+  resources!: User[];
 
   products!: any;
 
   ref: DynamicDialogRef | undefined;
 
   constructor(
-    private resourceService: ResourcesService,
+    private usersService: UsersService,
     public dialogService: DialogService
   ) {}
 
   ngOnInit() {
-    this.products = this.generateRandomData();
-    this.resourceService.getActiveProjectResources().subscribe((data) => {
+    // this.resourceService.getActiveProjectResources().subscribe((data) => {
+    //   this.resources = data;
+    //   console.log(this.resources);
+    // });
+    this.usersService.getUsers().subscribe((data) => {
       this.resources = data;
       console.log(this.resources);
     });
   }
 
-  generateRandomData() {
-    const products = [];
-    const categories = ['Accessories', 'Clothing', 'Electronics'];
-    const inventoryStatuses = ['INSTOCK', 'LOWSTOCK', 'OUTOFSTOCK'];
-
-    for (let i = 0; i < 5; i++) {
-      const product = {
-        id: Math.random(),
-        code: Math.random().toString(36).substring(2),
-        name: `Product ${i}`,
-        description: `Product Description ${i}`,
-        image: `product-image-${i}.jpg`,
-        price: Math.floor(Math.random() * 100) + 1,
-        category: categories[Math.floor(Math.random() * categories.length)],
-        quantity: Math.floor(Math.random() * 100) + 1,
-        inventoryStatus:
-          inventoryStatuses[
-            Math.floor(Math.random() * inventoryStatuses.length)
-          ],
-        rating: Math.floor(Math.random() * 5) + 1,
-      };
-      products.push(product);
-    }
-
-    return products;
-  }
-
-  async handleAddNewResource() {
-    this.ref = this.dialogService.open(AddResourceDialgComponent, {
+  async handleInfoClick(user: User) {
+    this.ref = this.dialogService.open(UserInfoDialgComponent, {
       header: 'Add a resource',
       footer: 'YoraStd',
       width: '50vw',
@@ -69,14 +45,14 @@ export class ResourcesPageComponent implements OnInit {
     });
 
     this.ref.onClose.subscribe((data: any) => {
-      this.resourceService.createResource(data).subscribe((data) => {
-        this.resources.push(data);
-      });
+      // this.resourceService.createResource(data).subscribe((data) => {
+      //   this.resources.push(data);
+      // });
     });
   }
 
-  async handleEditResource(resource: HumanResources) {
-    this.ref = this.dialogService.open(EditResourceDialgComponent, {
+  async handleTasksClick(user: User) {
+    this.ref = this.dialogService.open(UserTasksDialgComponent, {
       header: 'Edit resource',
       footer: 'YoraStd',
       width: '50vw',
@@ -86,5 +62,31 @@ export class ResourcesPageComponent implements OnInit {
     this.ref.onClose.subscribe((data: any) => {
       console.log(data);
     });
+  }
+
+  getUserRole(role: string) {
+    switch (role) {
+      case 'ADMIN':
+        return 'Project Chef';
+      case 'MANAGER':
+        return 'Project Manager';
+      case 'USER':
+        return 'Employee';
+      default:
+        return 'Unknown';
+    }
+  }
+
+  getRoleSeverity(role: string) {
+    switch (role) {
+      case 'ADMIN':
+        return 'danger';
+      case 'MANAGER':
+        return 'warning';
+      case 'USER':
+        return 'success';
+      default:
+        return 'info';
+    }
   }
 }

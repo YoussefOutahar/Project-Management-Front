@@ -28,4 +28,8 @@ export class ApiEndpointsService {
   public getLinksApiUrl(): string {
     return this.API_URL + this.projectGUID + '/links/';
   }
+
+  public getUsersApiUrl(): string {
+    return this.API_URL + this.projectGUID + '/users/';
+  }
 }

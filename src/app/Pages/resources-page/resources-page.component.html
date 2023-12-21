@@ -7,8 +7,15 @@
           <div class="card-content">
             <i class="pi pi-user m-4 mr-4" style="font-size: 4rem"></i>
             <div>
-              <h2 class="big-name ml-3">{{ item.name }}</h2>
-              <p class="faint-description ml-3">{{ item.description }}</p>
+              <h2 class="big-name ml-3">
+                {{ item.firstname + " " + item.lastname }}
+              </h2>
+              <p-tag
+                [severity]="getRoleSeverity(item.role)"
+                class="faint-description ml-3"
+              >
+                <span class="p-tag-value">{{ getUserRole(item.role) }}</span>
+              </p-tag>
               <p class="green-price ml-3">
                 Cost per hour: {{ item.costPerHour }}$
               </p>
@@ -16,13 +23,16 @@
             <div class="icon-and-buttons">
               <button
                 pButton
-                icon="pi pi-pencil"
+                icon="pi pi-info"
                 class="p-button-rounded m-1"
+                (click)="handleInfoClick(item)"
               ></button>
               <button
                 pButton
-                icon="pi pi-trash"
+                size="small"
+                icon="pi pi-database"
                 class="p-button-rounded p-button-danger m-1"
+                (click)="handleTasksClick(item)"
               ></button>
             </div>
           </div>
@@ -33,9 +43,9 @@
   </ng-template>
 </p-dataView>
 <div class="flex justify-content-end align-items-center p-mb-4">
-  <p-button
+  <!-- <p-button
     class="mr-2"
     icon="pi pi-plus"
     (onClick)="handleAddNewResource()"
-  ></p-button>
+  ></p-button> -->
 </div>
