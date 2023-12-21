@@ -1,3 +1,54 @@
-<p>
-  edit-project-dialogue works!
-</p>
+<div class="m-4">
+  <form [formGroup]="projectFormGroup">
+    <div class="field">
+      <label for="firstname6" class="mr-4">Title</label>
+      <input type="text" pInputText formControlName="title" />
+    </div>
+    <div class="field">
+      <label for="lastname6">Budget</label>
+      <p-inputNumber
+        formControlName="budget"
+        inputId="currency-us"
+        mode="currency"
+        currency="USD"
+        locale="en-US"
+        class="text-base text-color surface-overlay p-2 appearance-none outline-none focus:border-primary w-full"
+      >
+      </p-inputNumber>
+    </div>
+    <div class="field">
+      <label for="address">Dsecription</label>
+      <textarea
+        formControlName="description"
+        rows="5"
+        cols="30"
+        pInputTextarea
+        [autoResize]="true"
+        class="text-base text-color surface-overlay p-2 appearance-none outline-none focus:border-primary w-full"
+      ></textarea>
+    </div>
+    <div class="field">
+      <label for="city" class="mr-4">Start Date</label>
+      <p-calendar
+        formControlName="startDate"
+        [showIcon]="true"
+        class="w-full text-base text-color surface-overlay p-2 outline-none focus:border-primary"
+      ></p-calendar>
+    </div>
+    <div class="field">
+      <label for="state" class="mr-4">End Date</label>
+      <p-calendar
+        formControlName="endDate"
+        [showIcon]="true"
+        class="w-full text-base text-color surface-overlay p-2 outline-none focus:border-primary"
+      ></p-calendar>
+    </div>
+    <button
+      type="submit"
+      (click)="editProject()"
+      class="bg-primary border-primary-500 px-3 py-2 text-base border-1 border-solid border-round cursor-pointer transition-all transition-duration-200 hover:bg-primary-600 hover:border-primary-600 active:bg-primary-700 active:border-primary-700"
+    >
+      Submit
+    </button>
+  </form>
+</div>

@@ -49,6 +49,34 @@ export class AuthService {
       );
   }
 
+  register(data: any): void {
+    const registerRequest: RegisterRequest = {
+      firstname: data.firstname,
+      lastname: data.lastname,
+      email: data.email,
+      password: data.password,
+      role: data.role,
+    };
+
+    this.http
+      .post<TokenResponse>(
+        this.apiEndpointsService.API_URL_AUTH + 'register',
+        registerRequest
+      )
+      .subscribe(
+        (res) => {
+          console.log(res);
+          localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem('access_token', res.access_token);
+          localStorage.setItem('refresh_token', res.refresh_token);
+          this.router.navigate(['/dashboard']);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
+
   isLoggedIn(): boolean {
     let authToken = localStorage.getItem('access_token');
     return authToken !== null ? true : false;

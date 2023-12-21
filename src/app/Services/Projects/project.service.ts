@@ -25,6 +25,13 @@ export class ProjectService {
     );
   }
 
+  updateProject(project: Project) {
+    return this.http.put(
+      this.apiEndpointsService.API_URL_PROJECTS + 'update/' + project.id,
+      project
+    );
+  }
+
   deleteProject(project: Project) {
     return this.http.delete(
       this.apiEndpointsService.API_URL_PROJECTS + 'delete/' + project.id

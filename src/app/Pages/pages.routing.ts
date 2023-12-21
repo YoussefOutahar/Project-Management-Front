@@ -6,8 +6,6 @@ import { GanttPageComponent } from './gantt-page/gantt-page.component';
 import { ResourcesPageComponent } from './resources-page/resources-page.component';
 import { ReportsPageComponent } from './reports-page/reports-page.component';
 import { CalendarPageComponent } from './calendar-page/calendar-page.component';
-import { RiskRegisterPageComponent } from './risk-register-page/risk-register-page.component';
-import { RaciMatrixPageComponent } from './raci-matrix-page/raci-matrix-page.component';
 import { authGuard } from '../Auth/auth.guard';
 import { TrelloComponent } from './Trello/trello.component';
 import { ProjectSelectedGuard } from '../Services/Projects/projects-selected.guard';
@@ -51,16 +49,6 @@ export const pageRoutes: Routes = [
   {
     path: 'calendar',
     component: CalendarPageComponent,
-    canActivate: [authGuard, ProjectSelectedGuard],
-  },
-  {
-    path: 'risk-register',
-    component: RiskRegisterPageComponent,
-    canActivate: [authGuard, ProjectSelectedGuard],
-  },
-  {
-    path: 'raci-matrix',
-    component: RaciMatrixPageComponent,
     canActivate: [authGuard, ProjectSelectedGuard],
   },
 ];

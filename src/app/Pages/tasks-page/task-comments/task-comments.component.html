@@ -1,14 +1,10 @@
-<div>
-  <p-scroller>
-    @for (item of comments; track $index) {
-    <div class="flex">
-      <p-tag [value]="item.username" class="flex-none"></p-tag>
-      <p-tag [value]="item.createdAt" class="flex-none"></p-tag>
-      <p-tag [value]="item.text" class="flex-grow-1"></p-tag>
-    </div>
-
-    }
-  </p-scroller>
+<div style="height: 400px; width: 300px; overflow-y: auto">
+  @for (item of comments; track $index) {
+  <p-card header="{{ item.username }}" class="shadow-5 w-full">
+    <span class="text-muted">{{ item.createdAt }}</span>
+    <p>{{ item.text }}</p>
+  </p-card>
+  }
 </div>
 <div class="flex overflow-hidden">
   <input type="text" class="flex-grow-1" pInputText [(ngModel)]="value" />

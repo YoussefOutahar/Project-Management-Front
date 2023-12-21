@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Event, NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { NavItem } from '../Layout/Components/side-bar/nav-item/nav-item';
+import { AuthService } from '../Auth/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class NavService {
   public currentUrl = new BehaviorSubject<any>(undefined);
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthService) {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.currentUrl.next(event.urlAfterRedirects);
@@ -31,20 +32,21 @@ export class NavService {
       route: '/dashboard/tasks',
     },
     {
-      displayName: 'Trello',
-      iconName: 'layout-kanban',
-      route: '/dashboard/trello',
-    },
-    {
-      displayName: 'Budget',
-      iconName: 'currency-dollar',
-      route: '/dashboard/budget',
+      displayName: 'Calendar',
+      iconName: 'calendar',
+      route: '/dashboard/calendar',
     },
     {
       displayName: 'Gantt',
       iconName: 'chart-arrows',
       route: '/dashboard/gantt',
     },
+    {
+      displayName: 'Budget',
+      iconName: 'currency-dollar',
+      route: '/dashboard/budget',
+    },
+
     {
       displayName: 'Ressources',
       iconName: 'users',
@@ -54,21 +56,6 @@ export class NavService {
       displayName: 'Reports',
       iconName: 'report',
       route: '/dashboard/reports',
-    },
-    {
-      displayName: 'Calendar',
-      iconName: 'calendar',
-      route: '/dashboard/calendar',
-    },
-    {
-      displayName: 'Risk Register',
-      iconName: 'alert-circle',
-      route: '/dashboard/risk-register',
-    },
-    {
-      displayName: 'RACI Matrix',
-      iconName: 'grid-4x4',
-      route: '/dashboard/raci-matrix',
     },
   ];
 }

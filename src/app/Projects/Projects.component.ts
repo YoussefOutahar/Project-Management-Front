@@ -6,6 +6,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AddProjectDialogueComponent } from './Components/add-project-dialogue/add-project-dialogue.component';
 import { Router } from '@angular/router';
 import { AuthService } from '../Auth/auth.service';
+import { EditProjectDialogueComponent } from './Components/edit-project-dialogue/edit-project-dialogue.component';
 
 @Component({
   selector: 'app-Projects',
@@ -63,21 +64,6 @@ export class ProjectsComponent implements OnInit {
       //   detail: data.name,
       // });
     });
-    // this.projectService
-    //   .createProject({
-    //     id: 0,
-    //     name: 'Test Project',
-    //     description: 'Test Description',
-    //     budget: 1000,
-    //     startDate: new Date().getTime(),
-    //     endDate: new Date().getTime(),
-    //     createdAt: new Date().getTime(),
-    //     completed: false,
-    //   })
-    //   .subscribe((data: any) => {
-    //     console.log(data);
-    //     this.projectCards.push(data);
-    //   });
   }
 
   async handleCardClick(project: Project) {
@@ -94,7 +80,7 @@ export class ProjectsComponent implements OnInit {
   }
   async handleEditProject(project: Project, $event: any) {
     $event.stopPropagation();
-    this.ref = this.dialogService.open(AddProjectDialogueComponent, {
+    this.ref = this.dialogService.open(EditProjectDialogueComponent, {
       header: 'Edit a project',
       footer: 'YoraStd',
       width: '50vw',
@@ -103,7 +89,12 @@ export class ProjectsComponent implements OnInit {
     });
 
     this.ref.onClose.subscribe((data: any) => {
-      console.log(data);
+      this.projectService.updateProject(data).subscribe((data: any) => {
+        this.projectCards = this.projectCards.filter(
+          (projectCard) => projectCard.id !== data.id
+        );
+        this.projectCards.push(data);
+      });
     });
   }
 

@@ -8,9 +8,14 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../UI-Modules/material.module';
 import { AddProjectDialogueComponent } from './Components/add-project-dialogue/add-project-dialogue.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EditProjectDialogueComponent } from './Components/edit-project-dialogue/edit-project-dialogue.component';
 
 @NgModule({
-  declarations: [ProjectsComponent, AddProjectDialogueComponent],
+  declarations: [
+    ProjectsComponent,
+    AddProjectDialogueComponent,
+    EditProjectDialogueComponent,
+  ],
   imports: [
     CommonModule,
     MaterialModule,

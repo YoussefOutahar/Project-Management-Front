@@ -26,19 +26,20 @@ export class TaskCommentsComponent implements OnInit {
   async getComments() {
     this.taskService.getTaskComments(this.config.data.id).subscribe((data) => {
       this.comments = data;
+      console.log(data);
     });
   }
 
-  addComment() {
+  async addComment() {
     console.log(this.value);
     if (this.value) {
-      this.taskService.createComment(
-        this.config.data.id,
-        this.config.data,
-        this.value
-      );
-      this.value = '';
-      this.getComments();
+      this.taskService
+        .createComment(this.config.data.id, this.config.data, this.value)
+        .subscribe((data) => {
+          this.value = '';
+          console.log(data);
+          this.getComments();
+        });
     }
   }
 }
