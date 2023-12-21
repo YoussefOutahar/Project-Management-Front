@@ -17,6 +17,13 @@ export class TasksPageComponent implements OnInit {
   tasks: Task[] = [];
   infoTask: Task | undefined;
 
+  isEditor: boolean = false;
+  taskStates: any[] = [
+    { name: 'TODO' },
+    { name: 'IN_PROGRESS' },
+    { name: 'DONE' },
+    { name: 'CANCELLED' },
+  ];
   infoVisible: boolean = false;
 
   commentsRef: DynamicDialogRef | undefined;
@@ -35,6 +42,7 @@ export class TasksPageComponent implements OnInit {
         this.taskService.getAllTasks().then((data) => {
           this.tasks = data;
         });
+        this.isEditor = true;
       }
     });
   }

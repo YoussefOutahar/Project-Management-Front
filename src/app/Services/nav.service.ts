@@ -22,7 +22,12 @@ export class NavService {
 
   getNavItemsForRole = (role: string): NavItem[] => {
     if (role === 'ADMIN') {
-      return this.navItems.filter((item) => item.displayName !== 'Budget');
+      return this.navItems.filter(
+        (item) =>
+          item.displayName !== 'Budget' &&
+          item.displayName !== 'Office' &&
+          item.displayName !== 'Reports'
+      );
     } else if (role === 'MANAGER') {
       return this.navItems.filter(
         (item) =>

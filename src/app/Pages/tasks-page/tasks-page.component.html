@@ -62,16 +62,93 @@
           [(visible)]="infoVisible"
           [style]="{ width: '50vw' }"
         >
-          @if(task == null){
-          <div></div>
-          } @else{
-          <p-progressSpinner
-            styleClass="w-4rem h-4rem"
-            strokeWidth="8"
-            fill="var(--surface-ground)"
-            animationDuration=".5s"
-          ></p-progressSpinner>
-          }
+          @if(isEditor == true) { @if (infoTask != null) {
+          <form>
+            <div class="flex flex-column">
+              <div class="flex align-items-center justify-content-between">
+                <p>Task Name:</p>
+                <input
+                  type="text"
+                  pInputText
+                  [(ngModel)]="infoTask!.text"
+                  name="taskName"
+                />
+              </div>
+              <div class="flex align-items-center justify-content-between">
+                <p>Task State:</p>
+                <p-cascadeSelect
+                  [options]="taskStates"
+                  [(ngModel)]="infoTask.status"
+                  name="name"
+                  optionLabel="name"
+                  placeholder="Select a State"
+                ></p-cascadeSelect>
+              </div>
+              <div class="flex align-items-center justify-content-between">
+                <p>Task Duration:</p>
+                <p-inputNumber
+                  type="number"
+                  [(ngModel)]="infoTask!.duration"
+                  name="taskDuration"
+                />
+              </div>
+              <div class="flex align-items-center justify-content-between">
+                <p>Task Start Date:</p>
+                <input
+                  type="date"
+                  [(ngModel)]="infoTask!.start_date"
+                  name="taskStartDate"
+                />
+              </div>
+              <div class="flex align-items-center justify-content-between">
+                <p>Task End Date:</p>
+                <input
+                  type="date"
+                  [(ngModel)]="infoTask!.end_date"
+                  name="taskEndDate"
+                />
+              </div>
+              <div class="flex align-items-center justify-content-between">
+                <p>Task Description:</p>
+                <textarea
+                  pInputTextarea
+                  [(ngModel)]="infoTask!.description"
+                  name="taskDescription"
+                ></textarea>
+              </div>
+              <div class="flex align-items-center justify-content-between">
+                <button type="submit">Save</button>
+              </div>
+            </div>
+          </form>
+          } } @else { @if(infoTask != null) {
+          <div class="flex flex-column">
+            <div class="flex align-items-center justify-content-between">
+              <p>Task Name:</p>
+              <p>{{ infoTask!.text }}</p>
+            </div>
+            <div class="flex align-items-center justify-content-between">
+              <p>Task State:</p>
+              <p>{{ infoTask!.status }}</p>
+            </div>
+            <div class="flex align-items-center justify-content-between">
+              <p>Task Duration:</p>
+              <p>{{ infoTask!.duration }} Days</p>
+            </div>
+            <div class="flex align-items-center justify-content-between">
+              <p>Task Start Date:</p>
+              <p>{{ infoTask!.start_date }}</p>
+            </div>
+            <div class="flex align-items-center justify-content-between">
+              <p>Task End Date:</p>
+              <p>{{ infoTask!.end_date }}</p>
+            </div>
+            <div class="flex align-items-center justify-content-between">
+              <p>Task Description:</p>
+              <p>{{ infoTask!.description }}</p>
+            </div>
+          </div>
+          } }
         </p-dialog>
       </td>
     </tr>

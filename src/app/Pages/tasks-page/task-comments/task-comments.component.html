@@ -1,7 +1,6 @@
-<div style="height: 400px; width: 300px; overflow-y: auto">
+<div class="w-full m-4" tyle="height: 400px;  overflow-y: auto">
   @for (item of comments; track $index) {
   <p-card header="{{ item.username }}" class="shadow-5 w-full">
-    <span class="text-muted">{{ item.createdAt }}</span>
     <p>{{ item.text }}</p>
   </p-card>
   }
