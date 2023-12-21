@@ -19,6 +19,16 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     if (request.url.includes(this.apiEndpointsService.API_URL_AUTH)) {
+      if (request.url.includes('/me')) {
+        const token = localStorage.getItem('access_token');
+        if (token) {
+          request = request.clone({
+            setParams: {
+              access_token: `${token}`,
+            },
+          });
+        }
+      }
       return next.handle(request);
     }
     const token = localStorage.getItem('access_token');

@@ -8,6 +8,8 @@ import { LoginRequest } from './Interfaces/LoginRequest';
 import { RegisterRequest } from './Interfaces/RegisterRequest';
 import { TokenResponse } from './Interfaces/TokenResponse';
 import { ApiEndpointsService } from '../Services/api-endpoints.service';
+import { User } from './Interfaces/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -56,5 +58,12 @@ export class AuthService {
     localStorage.setItem('isLoggedIn', 'false');
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
+  }
+
+  me(): Observable<User> {
+    return this.http.post<User>(
+      this.apiEndpointsService.API_URL_AUTH + 'me',
+      {}
+    );
   }
 }

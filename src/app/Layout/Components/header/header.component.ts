@@ -30,7 +30,14 @@ export class HeaderComponent {
     private router: Router
   ) {}
 
-  handleProfileClick() {}
+  me: any | undefined;
+
+  handleProfileClick() {
+    this.authService.me().subscribe((data: any) => {
+      this.me = data;
+      console.log(this.me);
+    });
+  }
 
   handleTasksClick() {}
 

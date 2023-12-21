@@ -51,7 +51,15 @@
       </td>
       <td>{{ task.duration }} Days</td>
 
-      <td>{{ task.quantity }}</td>
+      <td>
+        <p-button
+          icon="pi pi-comments"
+          [rounded]="true"
+          [text]="true"
+          [raised]="true"
+          (click)="viewComments(task)"
+        ></p-button>
+      </td>
       <td>{{ task.start_date }}</td>
       <td>{{ task.end_date }}</td>
       <td>
