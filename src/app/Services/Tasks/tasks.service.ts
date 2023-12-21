@@ -105,6 +105,18 @@ export class TaskService {
     }
   }
 
+  async getUserTasks(userId: number) {
+    try {
+      return await firstValueFrom(
+        this.http.get(
+          this.apiEndpointsService.getTasksApiUrl() + 'user/' + userId
+        )
+      );
+    } catch (error) {
+      return HandleError(error);
+    }
+  }
+
   getTaskComments(taskId: number): Observable<Comment[]> {
     return this.http.get<Comment[]>(
       this.apiEndpointsService.getTasksApiUrl() + 'comment/all/' + taskId

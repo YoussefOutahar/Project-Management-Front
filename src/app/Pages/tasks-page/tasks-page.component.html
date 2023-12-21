@@ -1,20 +1,3 @@
-<p-toolbar>
-  <div class="p-toolbar-group-start">
-    <button pButton icon="pi pi-plus" class="mr-2"></button>
-    <button pButton icon="pi pi-print" class="mr-2"></button>
-    <button pButton icon="pi pi-upload"></button>
-  </div>
-  <div class="p-toolbar-group-center">
-    <span class="p-input-icon-left">
-      <i class="pi pi-search"></i>
-      <input pInputText placeholder="Search" />
-    </span>
-  </div>
-  <div class="p-toolbar-group-end">
-    <button pButton icon="pi pi-print" class="mr-2"></button>
-    <button pButton icon="pi pi-upload"></button>
-  </div>
-</p-toolbar>
 <p-table
   [value]="tasks"
   styleClass="p-datatable-gridlines"
@@ -26,7 +9,9 @@
   [exportHeader]="'customExportHeader'"
 >
   <ng-template pTemplate="caption">
-    <div class="flex align-items-center justify-content-between"></div>
+    <div class="flex align-items-center justify-content-between">
+      <p>Tasks:</p>
+    </div>
   </ng-template>
   <ng-template pTemplate="header">
     <tr>

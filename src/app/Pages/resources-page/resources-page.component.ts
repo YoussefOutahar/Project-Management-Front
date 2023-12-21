@@ -26,10 +26,6 @@ export class ResourcesPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.resourceService.getActiveProjectResources().subscribe((data) => {
-    //   this.resources = data;
-    //   console.log(this.resources);
-    // });
     this.usersService.getUsers().subscribe((data) => {
       this.resources = data;
       console.log(this.resources);
@@ -38,10 +34,11 @@ export class ResourcesPageComponent implements OnInit {
 
   async handleInfoClick(user: User) {
     this.ref = this.dialogService.open(UserInfoDialgComponent, {
-      header: 'Add a resource',
+      header: 'Info',
       footer: 'YoraStd',
       width: '50vw',
       modal: true,
+      data: user,
     });
 
     this.ref.onClose.subscribe((data: any) => {
@@ -53,10 +50,11 @@ export class ResourcesPageComponent implements OnInit {
 
   async handleTasksClick(user: User) {
     this.ref = this.dialogService.open(UserTasksDialgComponent, {
-      header: 'Edit resource',
+      header: 'Tasks',
       footer: 'YoraStd',
       width: '50vw',
       modal: true,
+      data: user,
     });
 
     this.ref.onClose.subscribe((data: any) => {
