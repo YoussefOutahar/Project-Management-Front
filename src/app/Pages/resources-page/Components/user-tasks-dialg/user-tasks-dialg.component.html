@@ -1,3 +1,61 @@
-<p>
-  user-tasks-dialg works!
-</p>
+<div>
+  <p-dropdown
+    [options]="allTasks"
+    [(ngModel)]="selectedTask"
+    placeholder="Select a task"
+    optionLabel="text"
+    [style]="{ width: '70%' }"
+  ></p-dropdown>
+  <p-button
+    label="Add Task"
+    icon="pi pi-plus"
+    class="p-button-rounded p-button-raised p-button-text"
+    (click)="addTask()"
+  >
+  </p-button>
+</div>
+<p-table
+  [value]="tasks"
+  styleClass="p-datatable-gridlines"
+  [tableStyle]="{ 'min-width': '50rem' }"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Name</th>
+      <th>State</th>
+      <th>Duration</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Delete</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-task>
+    @if(tasks.length > 0){
+    <tr>
+      <td>{{ task.text }}</td>
+      <td>
+        <p-tag
+          [value]="task.status"
+          [severity]="getTaskSeverity(task.status)"
+        ></p-tag>
+      </td>
+      <td>{{ task.duration }} Days</td>
+
+      <td>{{ task.start_date }}</td>
+      <td>{{ task.end_date }}</td>
+      <td>
+        <p-button
+          icon="pi pi-trash"
+          class="p-button-rounded p-button-raised p-button-text"
+          severity="danger"
+          (click)="deleteTask(task)"
+        >
+        </p-button>
+      </td>
+    </tr>
+
+    } @else {
+    <div class="block align-items-center">No Tasks Found</div>
+    }
+  </ng-template>
+</p-table>

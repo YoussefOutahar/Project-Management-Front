@@ -5,6 +5,7 @@ import { Task } from '../../Services/Tasks/Interfaces';
 import { MenuItem } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TaskCommentsComponent } from './task-comments/task-comments.component';
+import { AuthService } from '../../Auth/auth.service';
 
 @Component({
   selector: 'app-tasks-page',
@@ -21,11 +22,20 @@ export class TasksPageComponent implements OnInit {
   commentsRef: DynamicDialogRef | undefined;
 
   constructor(
+    private authService: AuthService,
     private taskService: TaskService,
     public dialogService: DialogService
   ) {
-    this.taskService.getAllTasks().then((data) => {
-      this.tasks = data;
+    this.authService.me().subscribe((data) => {
+      if (data.role !== 'ADMIN' && data.role !== 'MANAGER') {
+        this.taskService.getUserTasks(data.id).subscribe((data) => {
+          this.tasks = data;
+        });
+      } else {
+        this.taskService.getAllTasks().then((data) => {
+          this.tasks = data;
+        });
+      }
     });
   }
 

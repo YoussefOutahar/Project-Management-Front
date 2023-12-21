@@ -105,16 +105,32 @@ export class TaskService {
     }
   }
 
-  async getUserTasks(userId: number) {
-    try {
-      return await firstValueFrom(
-        this.http.get(
-          this.apiEndpointsService.getTasksApiUrl() + 'user/' + userId
-        )
-      );
-    } catch (error) {
-      return HandleError(error);
-    }
+  getUserTasks(userId: number) {
+    return this.http.get<Task[]>(
+      this.apiEndpointsService.getTasksApiUrl() + 'user/' + userId
+    );
+  }
+
+  assignTask(taskId: number, userId: number) {
+    return this.http.post(
+      this.apiEndpointsService.getTasksApiUrl() +
+        'assign/' +
+        taskId +
+        '/' +
+        userId,
+      {}
+    );
+  }
+
+  unassignTask(taskId: number, userId: number) {
+    return this.http.post(
+      this.apiEndpointsService.getTasksApiUrl() +
+        'unassign/' +
+        taskId +
+        '/' +
+        userId,
+      {}
+    );
   }
 
   getTaskComments(taskId: number): Observable<Comment[]> {

@@ -20,6 +20,28 @@ export class NavService {
     return this.navItems;
   };
 
+  getNavItemsForRole = (role: string): NavItem[] => {
+    if (role === 'ADMIN') {
+      return this.navItems.filter((item) => item.displayName !== 'Budget');
+    } else if (role === 'MANAGER') {
+      return this.navItems.filter(
+        (item) =>
+          item.displayName !== 'Reports' &&
+          item.displayName !== 'Budget' &&
+          item.displayName !== 'Office'
+      );
+    } else {
+      return this.navItems.filter(
+        (item) =>
+          item.displayName !== 'Reports' &&
+          item.displayName !== 'Budget' &&
+          item.displayName !== 'Ressources' &&
+          item.displayName !== 'Office' &&
+          item.displayName !== 'Gantt'
+      );
+    }
+  };
+
   navItems: NavItem[] = [
     {
       displayName: 'Office',

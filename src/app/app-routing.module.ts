@@ -26,7 +26,7 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: 'dashboard', redirectTo: '/dashboard/office', pathMatch: 'full' },
+      { path: 'dashboard', redirectTo: '/dashboard/tasks', pathMatch: 'full' },
       {
         path: 'dashboard',
         loadChildren: () =>
