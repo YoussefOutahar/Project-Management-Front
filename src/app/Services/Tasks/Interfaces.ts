@@ -20,3 +20,13 @@ export class Link {
   target?: number;
   type?: string;
 }
+
+export interface Comment {
+  id?: number;
+  text?: string;
+  createdAt?: string;
+  username: string;
+  commentatorId: number;
+  commentatorRole: string;
+  task: Task;
+}

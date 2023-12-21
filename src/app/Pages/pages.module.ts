@@ -29,6 +29,7 @@ import { AddResourceDialgComponent } from './resources-page/Components/add-resou
 import { EditResourceDialgComponent } from './resources-page/Components/edit-resource-dialg/edit-resource-dialg.component';
 import { BoardComponent } from './Trello/Components/board/board.component';
 import { ListComponent } from './Trello/Components/list/list.component';
+import { TaskCommentsComponent } from './tasks-page/task-comments/task-comments.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,10 @@ import { ListComponent } from './Trello/Components/list/list.component';
     ListComponent,
 
     OfficePageComponent,
+
     TasksPageComponent,
+    TaskCommentsComponent,
+
     BudgetPageComponent,
     GanttPageComponent,
 

@@ -25,6 +25,9 @@ export class ProjectSessionInterceptor implements HttpInterceptor {
       url: request.url.replace(this.projectGUID, projectId.toString()),
     });
 
+    console.log('ProjectSessionInterceptor: ' + request.url);
+    console.log('ProjectSessionInterceptor: ' + request.params);
+
     return next.handle(request);
   }
 }

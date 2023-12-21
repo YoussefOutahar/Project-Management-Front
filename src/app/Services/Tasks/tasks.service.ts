@@ -1,21 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Task } from './Interfaces';
+import { Task, Comment } from './Interfaces';
 import { HttpClient } from '@angular/common/http';
-import { Constants } from '../../Config/constants';
-import { firstValueFrom } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { ProjectService } from '../Projects/project.service';
 import { HandleError } from '../helpers';
 import { ApiEndpointsService } from '../api-endpoints.service';
+import { AuthService } from '../../Auth/auth.service';
+import { User } from '../../Auth/Interfaces/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
+  currentUser: User | undefined;
+
   constructor(
     private projectService: ProjectService,
-    private http: HttpClient,
-    private apiEndpointsService: ApiEndpointsService
-  ) {}
+    private apiEndpointsService: ApiEndpointsService,
+    private authService: AuthService,
+    private http: HttpClient
+  ) {
+    this.authService.me().subscribe((data: any) => {
+      this.currentUser = data;
+    });
+  }
 
   get(): Promise<Task[]> {
     return Promise.resolve([
@@ -95,5 +103,26 @@ export class TaskService {
     } catch (error) {
       return HandleError(error);
     }
+  }
+
+  getTaskComments(taskId: number): Observable<Comment[]> {
+    return this.http.get<Comment[]>(
+      this.apiEndpointsService.getTasksApiUrl() + 'comment/all/' + taskId
+    );
+  }
+
+  createComment(taskId: string, task: Task, text: string) {
+    var comment: Comment = {
+      text: text,
+      username: this.currentUser?.firstname + ' ' + this.currentUser?.lastname,
+      commentatorId: this.currentUser!.id,
+      commentatorRole: this.currentUser!.role,
+      task: task,
+    };
+
+    return this.http.post(
+      this.apiEndpointsService.getTasksApiUrl() + 'comment/create/' + taskId,
+      comment
+    );
   }
 }

@@ -1,3 +1,23 @@
-<p>
-  task-comments works!
-</p>
+<div>
+  <p-scroller>
+    @for (item of comments; track $index) {
+    <div class="flex">
+      <p-tag [value]="item.username" class="flex-none"></p-tag>
+      <p-tag [value]="item.createdAt" class="flex-none"></p-tag>
+      <p-tag [value]="item.text" class="flex-grow-1"></p-tag>
+    </div>
+
+    }
+  </p-scroller>
+</div>
+<div class="flex overflow-hidden">
+  <input type="text" class="flex-grow-1" pInputText [(ngModel)]="value" />
+  <p-button
+    label="Send"
+    icon="pi pi-send"
+    size="small"
+    iconPos="right"
+    class="flex-none"
+    (onClick)="addComment()"
+  ></p-button>
+</div>
